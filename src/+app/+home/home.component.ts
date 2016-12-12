@@ -1,13 +1,27 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ModelService } from '../shared/model/model.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Default,
-  encapsulation: ViewEncapsulation.Emulated,
   selector: 'home',
-  styleUrls: [ './home.component.css' ],
-  templateUrl: './home.component.html'
+  styles: [`
+    blockquote {
+      border-left:5px #158126 solid;
+      background:#fff;
+      padding:20px 20px 20px 40px;
+    }
+    blockquote::before {
+      left: 1em;
+    }
+  `],
+  template: `
+    <div class="home">
+      Home component
+      <strong>Async data call return value:</strong>
+      <pre>{{ data | json }}</pre>
+      <blockquote>{{ data.data }}</blockquote>
+    </div>
+  `
 })
 export class HomeComponent {
   data: any = {};
@@ -23,5 +37,4 @@ export class HomeComponent {
       this.data = data;
     });
   }
-
 }

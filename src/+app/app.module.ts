@@ -8,11 +8,11 @@ import { TodoModule } from './+todo/todo.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, XLargeDirective } from './app.component';
+import { AppComponent } from './app.component';
 
 
 @NgModule({
-  declarations: [ AppComponent, XLargeDirective ],
+  declarations: [ AppComponent ],
   imports: [
     SharedModule,
     HomeModule,

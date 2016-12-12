@@ -51,23 +51,23 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
   ]
 })
 export class MainModule {
-  constructor(public cache: CacheService) {
-
-  }
-
-  /**
-   * We need to use the arrow function here to bind the context as this is a gotcha
-   * in Universal for now until it's fixed
-   */
-  universalDoDehydrate = (universalCache) => {
-    universalCache[CacheService.KEY] = JSON.stringify(this.cache.dehydrate());
-  }
-
- /**
-  * Clear the cache after it's rendered
-  */
-  universalAfterDehydrate = () => {
-    // comment out if LRU provided at platform level to be shared between each user
-    this.cache.clear();
-  }
+ //  constructor(public cache: CacheService) {
+ //
+ //  }
+ //
+ //  /**
+ //   * We need to use the arrow function here to bind the context as this is a gotcha
+ //   * in Universal for now until it's fixed
+ //   */
+ //  universalDoDehydrate = (universalCache) => {
+ //    universalCache[CacheService.KEY] = JSON.stringify(this.cache.dehydrate());
+ //  }
+ //
+ // /**
+ //  * Clear the cache after it's rendered
+ //  */
+ //  universalAfterDehydrate = () => {
+ //    // comment out if LRU provided at platform level to be shared between each user
+ //    this.cache.clear();
+ //  }
 }

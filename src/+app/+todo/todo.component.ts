@@ -5,11 +5,57 @@ import { Todo } from './todo.schema'
 
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Default,
-  encapsulation: ViewEncapsulation.Emulated,
   selector: 'todo',
-  styleUrls: [ './todo.component.css' ],
-  templateUrl: './todo.component.html'
+  styles: [`
+    .table {
+      padding-top: 30px;
+    }
+    .row {
+      display: table-row;
+      background: #f6f6f6;
+    }
+    
+    .row:nth-of-type(odd) {
+      background: #e9e9e9;
+    }
+    
+    .row.header {
+      color: #ffffff;
+      font-weight: bold;
+      background: #158126;
+    }
+    
+    .cell {
+      padding: 20px;
+      display: table-cell;
+    }
+
+  `],
+  template: `
+    <div class="todo">
+    
+      Todo component
+      <form #f="ngForm" (ngSubmit)="addTodo()">
+        <input name="newTodo" [(ngModel)]="newValue">
+        <button>Submit</button>
+      </form>
+    
+      <div class="table">
+        <div class="row header">
+          <div class="cell">Id</div>
+          <div class="cell">Created at</div>
+          <div class="cell">Value</div>
+          <div class="cell">Completed</div>
+        </div>
+        <div class="row" *ngFor="let todo of todos">
+          <div class="cell">{{todo.id}}</div>
+          <div class="cell">{{todo.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</div>
+          <div class="cell">{{todo.value}}</div>
+          <div class="cell">{{todo.completed}}</div>
+        </div>
+      </div>
+    </div>
+  `
 })
 export class TodoComponent {
 

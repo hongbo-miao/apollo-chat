@@ -28,4 +28,30 @@ export class ProfileService {
       .map<ApolloQueryResult>(({ data }) => data.user)
       .catch(err => Observable.throw(err));
   }
+
+  updateProfile(firstName: string, lastName: string): Observable<ApolloQueryResult> {
+    return  this.apollo
+      .mutate({
+        mutation: gql`
+          mutation updateProfile(
+            $firstName: String!
+            $lastName: String!
+          ) {
+            updateProfile(
+              firstName: $firstName
+              lastName: $lastName
+            ) {
+              firstName
+              lastName
+            }
+          }
+        `,
+        variables: {
+          firstName,
+          lastName
+        },
+      })
+      .map(({ data }: ApolloQueryResult) => data.updateProfile)
+      .catch(err => Observable.throw(err));
+  }
 }

@@ -17,7 +17,7 @@ const Schema = `
   }
   
   type Mutation {
-    changeName(
+    updateProfile(
       firstName: String!
       lastName: String!
     ): User
@@ -38,6 +38,8 @@ let user = {
 const Resolvers = {
   Query: {
     user() {
+      console.log('Apollo Query', user);
+
       return {
         firstName: user.firstName,
         lastName: user.lastName
@@ -45,9 +47,10 @@ const Resolvers = {
     }
   },
   Mutation: {
-    changeName: (_, { firstName, lastName }) => {
+    updateProfile: (_, { firstName, lastName }) => {
       user.firstName = firstName;
       user.lastName = lastName;
+      console.log('Apollo Mutation', user);
 
       return {
         firstName: user.firstName,

@@ -20,6 +20,7 @@ import { createEngine } from 'angular2-express-engine';
 
 // App
 import { MainModule } from './node.module';
+import { GraphQL, GraphiQL } from './backend/graphql';
 
 // Routes
 import { routes } from './server.routes';
@@ -67,6 +68,8 @@ app.use(cacheControl, express.static(path.join(ROOT, 'dist/client'), {index: fal
 import { serverApi, createTodoApi } from './backend/api';
 // Our API for demos only
 app.get('/data.json', serverApi);
+app.use('/graphql', bodyParser.json(), GraphQL());
+app.use('/graphiql', GraphiQL());
 app.use('/api', createTodoApi());
 
 function ngApp(req, res) {

@@ -8,13 +8,14 @@ import { Component } from '@angular/core';
     <a routerLinkActive="router-link-active" routerLink="about">About</a>
     <a routerLinkActive="router-link-active" routerLink="todo">Todo</a>
     <a routerLinkActive="router-link-active" routerLink="lazy">Lazy</a>
+    <a routerLinkActive="router-link-active" routerLink="profile">Profile</a>
   </nav>
   <div>
     <main>
       <router-outlet></router-outlet>
     </main>
-  </div>
-  `
+</div>
+`
 })
 export class AppComponent {
 }

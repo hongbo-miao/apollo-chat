@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lazy',
+  selector: 'ac-lazy',
   template: `
     <p>
       Lazy component

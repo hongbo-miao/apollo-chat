@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { ModelService } from '../shared/model/model.service';
+import { ModelService } from '../shared/models/model.service';
 
 @Component({
-  selector: 'home',
+  selector: 'ac-home',
   styles: [`
     blockquote {
       border-left:5px #158126 solid;

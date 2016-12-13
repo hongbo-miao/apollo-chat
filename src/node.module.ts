@@ -3,11 +3,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 import { ApolloModule } from 'angular2-apollo';
+import { compose } from '@ngrx/core/compose';
+import { StoreModule, combineReducers } from '@ngrx/store';
+import { routerReducer } from '@ngrx/router-store';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 import { AppModule, AppComponent } from './+app/app.module';
-import { SharedModule } from './+app/shared/shared.module';
+import { SharedModule } from './+app/shared/modules/';
 import { CacheService } from './+app/shared/cache.service';
 import { client } from './apollo.browser';
+import { profileReducer } from './+app/+profile/reducers/';
 
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
@@ -33,6 +38,18 @@ export const UNIVERSAL_KEY = 'UNIVERSAL_CACHE';
     UniversalModule, // BrowserModule, HttpModule, and JsonpModule are included
 
     ApolloModule.withClient(client),
+
+    StoreModule.provideStore(
+      compose(
+        storeFreeze,
+        combineReducers
+      )({
+        router: routerReducer,
+        apollo: client.reducer(),
+
+        profile: profileReducer
+      })
+    ),
 
     FormsModule,
     RouterModule.forRoot([], { useHash: false }),

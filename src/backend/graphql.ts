@@ -1,28 +1,59 @@
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
+export interface Mutation {
+  // Submit a new repository, returns the new submission
+  submitRepository(firstName: string): string;
+}
+
 const Schema = `
-  type Author {
+  type User {
     firstName: String!
     lastName: String!
   }
   
   type Query {
-    author: Author
+    user: User
   }
+  
+  type Mutation {
+    changeName(
+      firstName: String!
+      lastName: String!
+    ): User
+  }
+
   schema {
     query: Query
+    mutation: Mutation
   }
 `;
 
+// fake database
+let user = {
+  firstName: 'Hongbo',
+  lastName: 'Miao'
+};
+
 const Resolvers = {
   Query: {
-    author() {
+    user() {
       return {
-        firstName: 'Hongbo',
-        lastName: 'Miao'
+        firstName: user.firstName,
+        lastName: user.lastName
       };
     }
+  },
+  Mutation: {
+    changeName: (_, { firstName, lastName }) => {
+      user.firstName = firstName;
+      user.lastName = lastName;
+
+      return {
+        firstName: user.firstName,
+        lastName: user.lastName
+      };
+    },
   }
 };
 

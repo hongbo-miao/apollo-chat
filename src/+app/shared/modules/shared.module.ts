@@ -2,8 +2,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ApiService } from './api.service';
-import { ModelService } from './model/model.service';
+
+import { ApiService } from '../api.service';
+import { ModelService } from '../models/model.service';
 
 const MODULES = [
   // Do NOT include UniversalModule, HttpModule, or JsonpModule here
@@ -24,7 +25,7 @@ const COMPONENTS = [
 const PROVIDERS = [
   ModelService,
   ApiService
-]
+];
 
 @NgModule({
   imports: [
@@ -50,3 +51,41 @@ export class SharedModule {
     };
   }
 }
+
+// import { NgModule } from '@angular/core';
+// import { CommonModule }   from '@angular/common';
+// import { RouterModule } from '@angular/router';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//
+// const MODULES = [
+//   CommonModule,
+//   RouterModule,
+//   FormsModule,
+//   ReactiveFormsModule
+// ];
+//
+// const PIPES = [
+//   // put pipes here
+// ];
+//
+// const COMPONENTS = [
+//   // put shared components here
+// ];
+//
+// @NgModule({
+//   imports: [
+//     ...MODULES
+//   ],
+//   declarations: [
+//     ...PIPES,
+//     ...COMPONENTS
+//   ],
+//   providers: [
+//   ],
+//   exports: [
+//     ...MODULES,
+//     ...PIPES,
+//     ...COMPONENTS
+//   ]
+// })
+// export class SharedModule { }

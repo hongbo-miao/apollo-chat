@@ -6,7 +6,7 @@ import { AboutModule } from './+about/about.module';
 import { TodoModule } from './+todo/todo.module';
 import { ProfileModule } from './+profile/modules/';
 
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './shared/modules/';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

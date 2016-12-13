@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 
 @Component({
-  selector: 'about',
+  selector: 'ac-about',
   template: 'About component'
 })
 export class AboutComponent {

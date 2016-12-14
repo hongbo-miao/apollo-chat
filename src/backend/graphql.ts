@@ -1,11 +1,6 @@
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 
-export interface Mutation {
-  // Submit a new repository, returns the new submission
-  submitRepository(firstName: string): string;
-}
-
 const Schema = `
   type User {
     firstName: String!

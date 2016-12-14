@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, toPayload } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { ProfileActions } from '../actions/';
@@ -24,7 +25,7 @@ export class ProfileEffects {
 
   @Effect() updateProfile$ = this.actions$
     .ofType(ProfileActions.PROFILE_UPDATE_PROFILE)
-    .map<any>(toPayload)
+    .map<Action, any>(toPayload)
     .switchMap(({ firstName, lastName }) => this.profileService.updateProfile(firstName, lastName)
       .map(user => ({ type: ProfileActions.PROFILE_UPDATE_PROFILE_SUCCESS, payload: user }))
       .catch(error => Observable.of({ type: ProfileActions.PROFILE_UPDATE_PROFILE_FAIL, payload: error }))

@@ -25,7 +25,7 @@ export class ProfileService {
           }
         `
       })
-      .map<ApolloQueryResult>(({ data }) => data.user)
+      .map(({ data }: ApolloQueryResult) => data.user)
       .catch(err => Observable.throw(err));
   }
 
